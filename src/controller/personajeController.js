@@ -11,6 +11,8 @@ router.get('/', Authenticate, async (req, res) => {
     return res.status(200).json(personaje);
 });
 
+
+
 router.get('/getById/:id',Authenticate, async (req,res)=>{
     
     const id = req.params.id

@@ -18,14 +18,14 @@ export const jwtStrategy = new Strategy(opt, (jwt_payload, done) =>{
 });
 
 export const Authenticate = (req,res,next) =>{
-    passport.authenticate(jwtStrategy, (err, user)=>{
+  passport.authenticate(jwtStrategy, (err, user)=>{
         console.log(user);
         if(err) res.status(401).send({ message: "Unauthorized"});
         if (!user) res.status(401).send({ message: "Unautherized"});
         else{
             next();
         } 
-    })(req, res, next);
-    //return next();  (esta linea se ejecutaria si no quiero que se autentique)
+    })(req, res, next); 
+   // return next(); 
     
 };

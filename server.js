@@ -14,7 +14,7 @@ app.use(passport.initialize());
 
 app.use(express.json());
 
-app.use("/auth", routerA)
+app.use("/auth/login", routerA)
 app.use("/characters", router);
 app.use("/movies", routerP);
 

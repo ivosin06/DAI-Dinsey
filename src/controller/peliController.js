@@ -7,9 +7,6 @@ const routerP = Router();
 const peliService = new PeliService();
 
 routerP.get('/', Authenticate, async (req, res) => {
-    if (req.query.orden != "ASC" || req.query.orden != "DESC") {
-        return res.status(400).json({ error: 'Metodo de orden no válido' }).send();
-    }
     const peli = await peliService.busquedaPeli(req.query.nombre, req.query.orden);
     return res.status(200).json(peli);
 });

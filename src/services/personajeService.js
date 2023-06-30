@@ -6,28 +6,26 @@ import res from 'express/lib/response.js';
 
 export class PersonajeService {
 
-   
-    getPersonaje = async () => {
-
-        const pool = await sql.connect(config);
-        const response = await pool.request().query(`SELECT Imagen, Nombre, Id from Personaje`);
-
-        return response.recordset
-    }
-
     getPersonajeByIdDetalle = async (id) => {
 
         const pool = await sql.connect(config);
-        const response = await pool.request()
+        const responseDelPersonaje = await pool.request()
             .input('id',sql.Int, id)
-            .query(`SELECT Personaje.Id AS PersonajeId, Personaje.Imagen, Personaje.Nombre, Personaje.Edad, Personaje.Peso, Personaje.Historia, Peli.Id, Peli.Imagen, Peli.Titulo, Peli.FechaCreacion, Peli.Calificacion
+            .query(`SELECT Personaje.Id AS PersonajeId, Personaje.Imagen, Personaje.Nombre, Personaje.Edad, Personaje.Peso, Personaje.Historia
             FROM Personaje
-            INNER JOIN PersonajesXPeli ON Personaje.Id = PersonajesXPeli.fkPersonaje
-            INNER JOIN Peli ON PersonajesXPeli.fkPeli = Peli.Id
             WHERE Personaje.Id = @id
             `);
-
-        return response.recordset
+            const responsePeliculas = await pool.request()
+            .input('idPersonaje',sql.Int, id)
+            .query(`SELECT Peli.Id, Peli.Titulo, Peli.FechaCreacion, Peli.Calificacion
+            FROM PersonajesXPeli
+            INNER JOIN Peli ON PersonajesXPeli.fkPeli = Peli.Id
+            WHERE PersonajesXPeli.fkPersonaje = @idPersonaje
+            `)
+            let personaje = responseDelPersonaje.recordset[0]
+            personaje.peliculas = responsePeliculas.recordset
+            return  personaje
+       
     }
 
     createPersonaje = async (personaje) => {
@@ -105,7 +103,7 @@ export class PersonajeService {
         usado = true;
         }
         
-        const request = "SELECT * FROM Personaje"
+        const request = "SELECT Imagen, Nombre, Id from Personaje "
         let response
         if(!usado){
             response = await pool.request().query(request)

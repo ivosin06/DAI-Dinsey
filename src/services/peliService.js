@@ -32,7 +32,7 @@ export class PeliService {
         });
     
     
-        return results;
+        return results[0];
     }
     
 
@@ -77,19 +77,22 @@ export class PeliService {
         let condicionWhere = "";
         let condicionOrder = "";
         
+        if(Orden){
+            console.log("a");
+            condicionOrder += "ORDER BY FechaCreacion " + Orden;
+        } 
         if(Nombre){
         condicionWhere = "WHERE @Titulo = Peli.Titulo";
         }
 
-        if(Orden){
-            condicionOrder += "ORDER BY Titulo " + Orden;
-        }
-
-        const request = "SELECT * FROM Peli"
+        const request = "SELECT Id, Imagen, Titulo, FechaCreacion from Peli"
+        const fullRequest = request + " " + condicionWhere + condicionOrder;
+        console.log(fullRequest);
         let response
         response = await pool.request()
         .input('Titulo',sql.VarChar, Nombre ?? '')
-        .query(request + " " + condicionWhere + " " + condicionOrder)
+        
+        .query(fullRequest)
         
         return response.recordset;
     }
