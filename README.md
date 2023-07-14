@@ -109,6 +109,39 @@ GET
 Esta llamada trae todas las películas de la base de datos. Puedes filtrar las películas por nombre y ordenarlas en forma ascendente o descendente.
 
 ### Obtener detalles de un personaje por ID (GET)
+GET 
+```bash
+ http://localhost:5000/characters/getById/5
+```
+Esta llamada trae todos los detalles de un personaje que tenga el ID igual al número al final de la consulta, incluyendo los nombres de las películas en las que aparece.
+
+### Actualizar un personaje (POST)
+POST
+```bash
+  http://localhost:5000/characters/8
+```
+Esta llamada cambia los valores del personaje que tenga el ID igual al número al final de la consulta. Puedes proporcionar los nuevos valores para actualizar el personaje.
+
+### Crear un personaje (PUT)
+PUT
+```bash
+  http://localhost:5000/characters
+```
+Esta llamada crea un nuevo personaje con los valores que desees proporcionar.
+
+### Borrar un personaje (DELETE)
+DELETE 
+```bash
+http://localhost:5000/characters/9
+```
+Esta llamada borra de la base de datos al personaje que tenga el ID igual al número al final de la consulta.
+
+### Obtener personajes (GET)
+GET 
+```bash
+http://localhost:5000/characters?nombre=Naomi%20Lapaglia
+```
+Esta llamada trae todos los personajes de la base de datos. Puedes filtrar los personajes por nombre, edad, peso y el ID de la película.
 
 
 
