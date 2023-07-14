@@ -22,9 +22,9 @@ Este trabajo se trata de una interacción entre el usuario, películas y persona
 2. Abre la carpeta en Visual Studio Code.
 3. En la terminal de Visual Studio Code, ejecuta el siguiente comando para clonar el proyecto en tu dispositivo:
 
-   ``` bash
+
    git clone https://github.com/ivosin06/DAI-Dinsey.git
-  ```
+
 
 4. Después de clonar el proyecto, asegúrate de tener Node.js instalado en tu dispositivo.
 5. En la terminal, navega hasta la carpeta del proyecto clonado.
