@@ -1,0 +1,174 @@
+openapi: 3.0.0
+info:
+  title: New Collection
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000
+tags:
+  - name: coleccion personajes
+  - name: coleccion peliculas
+  - name: authentication
+paths:
+  /characters/getById/1:
+    get:
+      tags:
+        - coleccion personajes
+      summary: get personajes by Id detalle
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /characters/8:
+    put:
+      tags:
+        - coleccion personajes
+      summary: Actualizar personaje by Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /characters:
+    post:
+      tags:
+        - coleccion personajes
+      summary: Crear personaje
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                imagen: wawa
+                nombre: federico fod
+                edad: 44
+                peso: 442
+                historia: palala
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - coleccion personajes
+      summary: get personajes
+      parameters:
+        - name: nombre
+          in: query
+          schema:
+            type: string
+          example: Naomi Lapaglia
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /characters/5:
+    delete:
+      tags:
+        - coleccion personajes
+      summary: Borrar personaje by Id
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /movies/1:
+    get:
+      tags:
+        - coleccion peliculas
+      summary: get peli by id detalle
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /movies/2:
+    put:
+      tags:
+        - coleccion peliculas
+      summary: Actualizar pelicula
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                imagen: nao nao
+                titulo: rio mistico
+                calificacion: 3
+                fechaCreacion: 04/09/2006
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /movies:
+    post:
+      tags:
+        - coleccion peliculas
+      summary: Crear pelicula
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                imagen: nao nao
+                titulo: wodolian
+                calificacion: 3
+                fechaCreacion: 04/09/2006
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /movies/3:
+    delete:
+      tags:
+        - coleccion peliculas
+      summary: Borrar pelicula
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /movies/:
+    get:
+      tags:
+        - coleccion peliculas
+      summary: get peliculas
+      parameters:
+        - name: orden
+          in: query
+          schema:
+            type: string
+          example: DESC
+        - name: nombre
+          in: query
+          schema:
+            type: string
+          example: Rio%20mistico
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/login:
+    get:
+      tags:
+        - authentication
+      summary: http://localhost:5000/auth/login
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
